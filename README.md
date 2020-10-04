@@ -1,2 +1,2 @@
 # secknight
-Educational Security Assistany
+Educational Security Assistant - Secure Spring Web Application
