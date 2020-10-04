@@ -1,0 +1,30 @@
+spring.servlet.multipart.max-file-size=128KB
+spring.servlet.multipart.max-request-size=128KB
+/*																
+.sessionManagement()
+.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//does not stored in db
+.and()
+.addFilter(new JwtCredAuthenticationFilter(authenticationManager()))
+//access to manager because of the extend WebSecurityConfigurerAdapter
+.addFilterAfter(new JwtTokenVerifierFilter(),JwtCredAuthenticationFilter.class)
+ */
+
+
+network.proxy.allow_hijacking_localhost
+
+
+
+DB-SQLITE
+	Dynamic DB Selection 												Pending
+	Assign Role
+	Password Expire & Forget Password
+
+Encoding attacks														Pending	
+
+By default:
+	X-Frame-Options: DENY
+	X-Content-Type-Options: nosniff
+	X-XSS-Protection: 1; mode=block
+
+

@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>My Web Application</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="icon" type="image/x-icon" href="/images/icons/sec.png" />
+	<link rel="stylesheet" href="/css/index.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+</head>
+
+<body class="is-preload">
+
+	<!-- Header -->
+	<header id="header">
+		<a class="logo" href="/index.html">Home</a>
+
+	</header>
+
+	<section class="wrapper">
+		<div class="inner">
+			<div class="content my_custom1" style="background-color: rgba(255, 255, 255, 0.7);">
+				<br>
+				<div style="text-align: center;">
+					<h1>Register</h1>
+				</div>
+				<form method="post" action="#" th:action="@{/register}" th:object="${registerUser}">
+					<div class="my_custom1">
+						<div class="col-6">
+							<label for="reg_username"></label>
+							<input type="text" th:field="${registerUser.username}" id="reg_username" value=""
+																	 placeholder="Username" />
+						</div>
+						<div th:if="${error_user}" th:text="${error_user}" style="color: #ce1b28;">
+							<h4></h4>
+						</div>
+						<br>
+						<div class="col-6">
+							<input type="text" th:field="${registerUser.email}" id="reg_email" value=""
+								placeholder="Email" />
+						</div>
+						<div th:if="${error_email}" th:text="${error_email}" style="color: #ce1b28;">
+							<h4></h4>
+						</div>
+						<br>
+						<div class="col-6 col-12-medium my_custom2">
+							<label for="reg_password"></label>
+							<input type="password" th:field="${registerUser.password}" id="reg_password" value="" placeholder="Password" />
+						</div>
+						<div th:if="${error_password}" th:utext="${error_password}" style="color: #ce1b28;"><h4></h4></div>
+						<br>
+						<div class="col-6 col-12-medium my_custom2">
+							<label for="reg_retype"></label>
+							<input type="password" th:field="${registerUser.retype}" id="reg_retype" value="" placeholder="Re-type Password"  />
+						</div>
+						<div th:if="${error_retype}" th:text="${error_retype}" style="color: #ce1b28;"><h4></h4></div>
+						<br>
+						<div th:if="${error_auth}" th:text="${error_auth}" style="color: #ce1b28;"><h4></h4></div>
+						<br>
+						<div class="col-6 col-12-medium">
+							<ul class="actions fit">
+								<li><button class="button primary fit" type="submit"
+										style="font-size: 15px;">Register</button></li>
+							</ul>
+						</div>
+						<br><br>
+					</div>
+				</form>
+
+				<div style="text-align: center;">
+					<h4>Already have an account? </h4><a href="/login"><h4>Login</h4></a>
+				</div>
+				<br><br>
+			</div>
+		</div>
+	</section>
+
+	<!-- Scripts -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.min.js"></script>
+	<script src="/js/breakpoints.min.js"></script>
+	<script src="/js/util.js"></script>
+	<script src="/js/main.js"></script>
+
+</body>
+</html>

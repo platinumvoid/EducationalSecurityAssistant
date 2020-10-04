@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                pattern="%style{%d{ISO8601}}{white} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{1.}}{bright,yellow}: %msg%n%throwable" />
+        </Console>
+ 
+        <RollingFile name="RollingFile"
+            fileName="./logs/main.log"
+            filePattern="./logs/$${date:yyyy-MM}/main-%d{-dd-MMMM-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <pattern>%d %p %C{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <!-- rollover on startup, daily and when the file reaches 
+                    10 MegaBytes -->
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy
+                    size="10 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+        <RollingFile name="AuditManager"
+                     fileName="./logs/audit_logs/audit.log"
+                     filePattern="./logs/audit_logs/$${date:yyyy-MM}/audit-%d{-dd-MMMM-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <pattern>%d %p %C{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <!-- rollover on startup, daily and when the file reaches
+                    10 MegaBytes -->
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy
+                        size="10 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+        <RollingFile name="ExceptionHandler"
+                     fileName="./logs/exception_logs/exception.log"
+                     filePattern="./logs/exception_logs/$${date:yyyy-MM}/exception-%d{-dd-MMMM-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <pattern>%d %p %C{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <!-- rollover on startup, daily and when the file reaches
+                    10 MegaBytes -->
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy
+                        size="10 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+        <RollingFile name="CurrentUsers"
+                     fileName="./logs/current_users/users.log"
+                     filePattern="./logs/current_users/$${date:yyyy-MM}/users-%d{-dd-MMMM-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <pattern>%d %p %C{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <!-- rollover on startup, daily and when the file reaches
+                    10 MegaBytes -->
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy
+                        size="10 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+        <RollingFile name="CRLF"
+                     fileName="./logs/crlf/crlf.log"
+                     filePattern="./logs/crlf/$${date:yyyy-MM}/crlf-%d{-dd-MMMM-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <pattern>%d %p %C{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <!-- rollover on startup, daily and when the file reaches
+                    10 MegaBytes -->
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy
+                        size="10 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+ 
+    <Loggers>
+        <Logger name="org.secknight.secure_web_app.controllers.AdminUI" additivity="false">
+            <AppenderRef ref="CurrentUsers"/>
+        </Logger>
+        <Logger name="org.secknight.secure_web_app.audit.AuditManager" additivity="false">
+            <AppenderRef ref="AuditManager"/>
+        </Logger>
+        <Logger name="org.secknight.secure_web_app.error_handling.ControllerExceptionHandler" additivity="false">
+            <AppenderRef ref="ExceptionHandler"/>
+        </Logger>
+        <Logger name="org.secknight.secure_web_app.controllers.vulnerabilities.Other" additivity="false">
+            <AppenderRef ref="CRLF"/>
+        </Logger>
+        <!-- ERROR, WARN, INFO, DEBUG or TRACE -->
+        <Root level="INFO">
+            <AppenderRef ref="RollingFile" />
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+ 
+</Configuration>

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>My Web Application</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="icon" type="image/x-icon" href="/images/icons/sec.png" />
+	<link rel="stylesheet" href="/css/index.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+</head>
+
+	<body class="is-preload">
+
+		<!-- Header -->
+		<header id="header">
+			<a class="logo" href="/">Home</a>
+			<nav>
+				<a class="logo" href="#menu">Menu</a>
+			</nav>
+		</header>
+
+		<!-- Nav -->
+		<nav id="menu">
+			<ul class="links">
+				<li><a href="/login">Login</a></li>
+				<li><a href="/register">Register</a></li>
+			</ul>
+		</nav>
+
+		<!-- Banner -->
+		<section id="banner">
+			<div class="inner">
+				<h1>OTHER VULNERABILITIES</h1>
+			</div>
+		</section>
+
+		<!-- Sections -->
+		<section class="wrapper">
+			<div class="inner">
+				<header class="special">
+				</header>
+				<div class="highlights">
+					<section>
+						<div class="content" >
+							<h3>Insecure Redirection</h3>
+							<p>This vulnerability allows an attacker to control the redirection
+								of a request.
+								Try this <a href="/other-interface/redirect?url=http://www.google.com">Link</a>
+								It will not have any security impact on the web app
+								itself. Also if the url is protected by an access control
+								policy, if the issuer of the request does not have the necessary
+								permissions, they will not access that directory (unlike
+								vulnerability Insecure Redirect Object Reference). However this
+								approach is susceptible to phishing attacks and possibly will
+								lead to user credentials being stolen. It will allow the
+								attacker disguise their malicious website to seem more trustworthy
+								since the request will come from the legitimate website.
+							</p>
+						</div>
+					</section>
+					<section>
+						<div class="content">
+							<h3>HTTP PARAMETER POLLUTION</h3>
+							<a th:if="${output}" th:text="${output}"></a>
+							<p> This is just for information purposes.
+								Try this <a href="/other-interface/http-pollution?input=a&input=b">Link</a>
+								 and see the output above.
+								In HPP, the attacker introduces multiple parameters
+								with the same name into a single HTTP request, whereas the attack vector is
+								split across all instances. Since there is not a single standard to handle this
+								case scenario, various back-end frameworks handle it differently. For instance read only the
+								first (JSP, Servlet/Apache Tomcat), only the last parameter (PHP/Apache) or concatenation
+								into a single String (ASP.NET). <br>
+								In case of the last parameter being read an attacker can bypass a hardcoded parameter.
+								In case of concatenation an attacker can bypass an input sanitization by splitting it
+								across multiple parameters.
+								For example ?input=&lt;sc&input=ript&gt;&input=alert('HI')&input=&lt;/scr&input=ipt&gt; <br>
+								In Spring Boot although it uses Apache Tomcat it concatenates the parameters and it
+								uses a comma (,) , thus rendering those attacks useless. However bare this in
+								mind for your input handling.
+							</p>
+						</div>
+					</section>
+					<section>
+						<div class="content" >
+							<h3>Carriage Return-Line Feed (CRLF)</h3>
+							<p>
+								Try this <a href="/other-interface/crlf-injection?input=%0D%0A2020-08-09%2001%3A28%3A37%2C893%20INFO%20o.s.s.c.v.Other%20%5Bhttp-nio-8080-exec-8%5D%20Fake%20Log">Link</a>
+								See output in log file crlf. This vulnerability occurs when we log inputs controlled by the user.
+								An attacker can add \r\n (%0D%0A) to the end of the string and then append
+								a fake LOG entry. Also, this may seem obvious in this contrived example (wrong
+								timestamp), but would you really notice it if you were reading thousands of lines of logs?
+								A log analyzer will definitely not recognize this as a fake log entry.
+								With this approach an attacker can mislead system administrators into working to
+								find a non-existed vulnerability while the perform the actual one.
+							</p>
+						</div>
+					</section>
+				</div>
+			</div>
+		</section>
+		<!-- Scripts -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.min.js"></script>
+		<script src="/js/breakpoints.min.js"></script>
+		<script src="/js/util.js"></script>
+		<script src="/js/main.js"></script>
+	</body>
+</html>

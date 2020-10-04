@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>My Web Application</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="icon" type="image/x-icon" href="/images/icons/sec.png" />
+	<link rel="stylesheet" href="/css/index.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+</head>
+
+	<body class="is-preload">
+
+		<!-- Header -->
+		<header id="header">
+			<a class="logo" href="/">Home</a>
+			<nav>
+				<a class="logo" href="#menu">Menu</a>
+			</nav>
+		</header>
+
+		<!-- Nav -->
+		<nav id="menu">
+			<ul class="links">
+				<li><a href="/login">Login</a></li>
+				<li><a href="/register">Register</a></li>
+			</ul>
+		</nav>
+
+		<!-- Banner -->
+		<section id="banner">
+			<div class="inner">
+				<h1>SQL INJECTION</h1>
+			</div>
+		</section>
+
+		<!-- Sections -->
+		<section class="wrapper">
+			<div class="inner">
+				<header class="special">
+				</header>
+				<div class="highlights">
+					<section>
+						<div class="content">
+							<header>
+								<h3>Secured Method</h3>
+							</header>
+							<form method="post" action="#" th:action="@{/sql-interface(post_id1)}" th:object="${secure}">
+								<div class="my_custom1">
+									<div class="col-6">
+										<label for="post1id">Try Input Commented Here</label>
+										<!--Title1-->
+										<input type="text" th:field="${secure.input}" id="post1id"/>
+									</div>
+									<br>
+									<div class="col-6 col-12-medium">
+										<ul class="actions fit">
+											<li><button class="button primary fit" type="submit"
+														style="font-size: 15px;">POST</button></li>
+										</ul>
+									</div>
+									<br>
+								</div>
+							</form>
+						</div>
+					</section>
+					<section>
+						<div class="content" >
+							<h4>Query: <br> SELECT Title, Author, Year FROM Books WHERE Title= ?;</h4>
+							<br>
+							<h4>Output:</h4>
+							<div th:if="${output}" th:utext="${output}" style="color: #ce1b28;"></div>
+						<!--"${#strings.replace( #strings.escapeXml(output),'#','&lt;br&gt;')}"-->
+						</div>
+					</section>
+					<section>
+						<div class="content">
+							<header>
+								<h3>Vulnerable Method</h3>
+							</header>
+							<form method="post" action="#" th:action="@{/sql-interface(post_id2)}" th:object="${vulnerable}">
+								<div class="my_custom1">
+									<div class="col-6">
+										<label for="post2id">Try Input Commented Here</label>
+										<!--'or 1=1;-->
+										<input type="text" th:field="${vulnerable.input}" id="post2id"/>
+									</div>
+									<br>
+									<div class="col-6 col-12-medium">
+										<ul class="actions fit">
+											<li><button class="button primary fit" type="submit"
+														style="font-size: 15px;">POST</button></li>
+										</ul>
+									</div>
+									<br>
+								</div>
+							</form>
+						</div>
+					</section>
+					<section>
+						<div class="content" >
+							<h3>Protection:</h3>
+							<p> In SQLite by default JDBC allows execution of only one query per statement, therefore preventing the
+							injection of additional queries that can maliciously alter or compromise the database. However we still
+							need to use Prepared Statements to avoid Database Information Exposure. See class SQLiteUserDao for more
+							information</p>
+						</div>
+					</section>
+					<section>
+						<div class="content" style="background: unset;">
+						</div>
+					</section>
+					<section>
+						<div class="content">
+							<h3>Vulnerability:</h3>
+							<p>By using the above malicious payload we can extract all the entries in the
+							table instead of just the one matched by our input, since the WHERE clause will always be true.
+								Example scenarios where this particular vulnerability is extremely dangerous is when
+							we try to authenticate a user. An attacker can see all the usernames and passwords on the system and
+							hence bypassing any authentication filters.</p>
+						</div>
+					</section>
+
+				</div>
+			</div>
+		</section>
+		
+
+		<!-- Scripts -->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.min.js"></script>
+			<script src="/js/breakpoints.min.js"></script>
+			<script src="/js/util.js"></script>
+			<script src="/js/main.js"></script>
+
+	</body>
+</html>

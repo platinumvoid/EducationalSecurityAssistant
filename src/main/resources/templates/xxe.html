@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>My Web Application</title>
+	<meta name="_csrf"  th:content="${_csrf.token}"/>
+	<!-- default header name is X-CSRF-TOKEN -->
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="icon" type="image/x-icon" href="/images/icons/sec.png" />
+	<link rel="stylesheet" href="/css/index.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+</head>
+
+	<body class="is-preload">
+
+		<!-- Header -->
+		<header id="header">
+			<a class="logo" href="/">Home</a>
+			<nav>
+				<a class="logo" href="#menu">Menu</a>
+			</nav>
+		</header>
+
+		<!-- Nav -->
+		<nav id="menu">
+			<ul class="links">
+				<li><a href="/login">Login</a></li>
+				<li><a href="/register">Register</a></li>
+			</ul>
+		</nav>
+
+		<!-- Banner -->
+		<section id="banner">
+			<div class="inner">
+				<h1>XML External Entity (XXE)</h1>
+			</div>
+		</section>
+
+		<!-- Sections -->
+		<section class="wrapper">
+			<div class="inner">
+				<header class="special">
+				</header>
+				<div class="highlights">
+					<section>
+						<div class="content">
+							<h3>SECURE METHOD</h3>
+
+							<button id="secure_button" class="button primary fit" type="submit" style="font-size: 15px;">POST</button>
+						</div>
+					</section>
+					<section>
+						<div class="content" >
+							<label for="postid">Try inputs commented here and then click POST:</label>
+							<!--Paul-->
+							<!--&amp;xxe;-->
+							<input type="text" id="postid"/>
+							<a>You can find the xml payload in the main.js file. If you are not
+								using Linux change the file URL to any file you want on your system.</a>
+							<p id="output"></p>
+						</div>
+					</section>
+					<section>
+						<div class="content">
+							<h3>VULNERABLE METHOD</h3>
+							<button id="vuln_button" class="button primary fit" type="submit" style="font-size: 15px;">POST</button>
+						</div>
+					</section>
+					<section>
+						<div class="content" >
+							<h3>Protection:</h3>
+							<p>The safest way to prevent XXE is always to disable DTDs (External Entities) completely.
+								As you can see the secure method completely blocks the malicious payload. We have added a set of features you can use in your parser that can protect from such
+							attacks. See XXE class for more information.</p>
+						</div>
+					</section>
+					<section>
+						<div class="content" style="background: unset;">
+						</div>
+					</section>
+					<section>
+						<div class="content">
+							<h3>Vulnerability:</h3>
+							<p>
+								XXE is a type of attack against an application that parses XML input.
+								This attack occurs when untrusted XML input containing a reference
+								to an External Entity is processed by a weakly configured XML parser.
+								Malicious payload: &lt;!DOCTYPE foo [&lt;!ENTITY xxe SYSTEM "file:///etc/passwd"&gt;]&gt;
+								<br>In this case scenario we can read any file on the server by just changing
+								the file URL in the payload.
+							</p>
+						</div>
+					</section>
+				</div>
+			</div>
+		</section>
+
+		<!-- Scripts -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.min.js"></script>
+		<script src="/js/breakpoints.min.js"></script>
+		<script src="/js/util.js"></script>
+		<script src="/js/main.js"></script>
+	</body>
+</html>

@@ -1,0 +1,10 @@
+2020-09-19 16:35:30,367 WARN o.s.s.a.AuditManager [https-jsse-nio-8443-exec-5] 
+User: anonymousUser - AUTHORIZATION_FAILURE
+-------------------------------
+	Remote IP address: 127.0.0.1
+	Session Id: E22D76C66BBA41DD6584D7148F4F618A
+	Request URL: /userUI
+	Authorities: ROLE_ANONYMOUS, 
+	Configurations: 
+		null
+

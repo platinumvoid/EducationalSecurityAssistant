@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>My Web Application</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="icon" type="image/x-icon" href="/images/icons/sec.png" />
+	<link rel="stylesheet" href="/css/index.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+</head>
+
+<body class="is-preload">
+
+	<!-- Banner -->
+	<section id="banner">
+		<div class="inner">
+			<h1>ERROR <div th:if="${errorCode}" th:text="${errorCode}"></div> <div th:if="${errorMessage}" th:text="${errorMessage}"></div>
+			</h1>
+			<a th:href="@{__${#httpServletRequest.getAttribute('javax.servlet.forward.request_uri')}__}">Vulnerable Link</a>
+			<!--The developer wanted to view a dynamic message that said the requested page is not found.
+			 To exploit this vulnerability escape the input between two parenthesis eg. (7*7) and see the href output.
+			 For the example with Remote Code Execution fortunately is not working when the application runs on Tomcat.
+			 This is because you need to use Spring EL, so you need to use ${}. However, Tomcat does not allow { and }
+			 characters in the path without URL-encoding. And we cannot use encoding, because
+			 ${#httpServletRequest.getAttribute('javax.servlet.forward.request_uri'} returns the path without decoding. -->
+		</div>
+	</section>
+
+
+	<!-- Scripts -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.min.js"></script>
+	<script src="/js/breakpoints.min.js"></script>
+	<script src="/js/util.js"></script>
+	<script src="/js/main.js"></script>
+
+</body>
+
+</html>

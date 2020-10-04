@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>My Web Application</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="icon" type="image/x-icon" href="/images/icons/sec.png" />
+		<link rel="stylesheet" href="/css/index.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="logo" href="#">Home</a>
+				<nav>
+					<a class="logo" href="#menu">Menu</a>
+				</nav>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="/login">Login</a></li>
+					<li><a href="/register">Register</a></li>
+				</ul>
+			</nav>
+
+		<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<h1>Welcome</h1>
+					<p>Below are some of the most popular vulnerabilities a web application can have<br/>
+					Choose one for an interactive tutorial</p>
+					<br>
+					<p>Internal Configurations guidelines are explained in the PowerPoint presentation in home directory</p>
+					<br>
+					<p>Usernames and Passwords to access the User Interfaces are located inside the DB directory</p>
+
+				</div>
+				<!-- <video autoplay loop muted playsinline src="/images/banner.mp4"></video> -->
+			</section>
+
+		<!-- Highlights -->
+			<section class="wrapper">
+				<div class="inner">
+					<header class="special">
+					</header>
+					<div class="highlights">
+						<section>
+							<div class="content">
+								<header>
+									<a href="/xxe-interface">
+									<img src="/images/xxe.png" style="width: 100%" class="icon" alt="XML External Entity (XXE)" >
+									</a>
+									<h3>XML External Entity (XXE)</h3>
+								</header>
+								<p>XML input containing a reference to an external entity is processed by a weakly configured XML parser</p>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<header>
+									<a href="/sql-interface">
+									<img src="/images/sql_injection.png" style="width: 100%" class="icon" alt="SQL Injection" >
+									</a>
+									<h3>SQL Injection</h3>
+								</header>
+								<p>Insertion or “injection” of a SQL query via the input data from the client to the application</p>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<header>
+									<a href="/xss-interface">
+									<img src="/images/xss.png" style="width: 100%" class="icon" alt="Cross-site Scripting (XSS)" >
+									</a>
+									<h3>Cross-site Scripting (XSS)</h3>
+								</header>
+								<p>Malicious scripts are injected into otherwise benign and trusted websites</p>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<header>
+									<a href="/ssti-interface">
+									<img src="/images/ssti.png" style="width: 100%" class="icon" alt="Server-side Template Injection (SSTI)" >
+									</a>
+									<h3>Server-side Template Injection (SSTI)</h3>
+								</header>
+								<p>User input is embedded in a template in an unsafe manner and results in remote code execution on the server</p>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<header>
+									<a href="/path-interface">
+									<img src="/images/pathtraversal.png" style="width: 85%" class="icon" alt="Directory (Path) Traversal" >
+									</a>
+									<h3>Directory (Path) Traversal</h3>
+								</header>
+								<p>Access files and directories that are stored outside the web root folder by manipulating variables that reference files with dot-dot-slash</p>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<header>
+									<a href="/upload-interface">
+									<img src="/images/fileupload.png" style="width: 100%" class="icon" alt="Unrestricted File Upload" >
+									</a>
+									<h3>Unrestricted File Upload</h3>
+								</header>
+								<p>Upload malicious code to the system and find a way to get the code executed</p>
+							</div>
+						</section>
+						<section>
+							<div class="content" style="background: unset;">
+							</div>
+						</section>
+						<section>
+							<div class="content" >
+								<header>
+									<a href="/other-interface">
+									<img src="/images/other.png" style="width: 100%" class="icon" alt="Unrestricted File Upload" >
+									</a>
+									<h3>Other Vulnerabilities</h3>
+								</header>
+								<p>Vulnerabilities with less security impact but still worth mentioning</p>
+							</div>
+						</section>
+						<section>
+							<div class="content" style="background: unset;">
+							</div>
+						</section>
+					</div>
+				</div>
+			</section>
+					<!-- Scripts -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.min.js"></script>
+		<script src="/js/breakpoints.min.js"></script>
+ 		<script src="/js/util.js"></script>
+		<script src="/js/main.js"></script>
+	</body>
+</html>

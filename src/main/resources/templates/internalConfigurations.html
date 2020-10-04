@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>My Web Application</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="icon" type="image/x-icon" href="/images/icons/sec.png" />
+		<link rel="stylesheet" href="/css/index.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="logo" href="#">Home</a>
+				<nav>
+					<a class="logo" href="#menu">Menu</a>
+				</nav>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="/login">Login</a></li>
+					<li><a href="/register">Register</a></li>
+				</ul>
+			</nav>
+
+		<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<h1>Internal Configurations</h1>
+				</div>
+			</section>
+
+		<!-- Highlights -->
+			<section class="wrapper">
+				<div class="inner" style="background: white;">
+					<br>
+					<header class="special">
+						<div style="width: 50%; margin: auto;">
+						<label for="configurations">Select Configuration:</label>
+						<select name="configurations" id="configurations">
+							<option value="volvo">Volvo</option>
+							<option value="saab">Saab</option>
+							<option value="mercedes">Mercedes</option>
+							<option value="audi">Audi</option>
+						</select>
+						</div>
+						<br>
+						<h2>Audit</h2>
+					</header>
+					<div class="highlights" >
+						<!--style="background: unset;"-->
+						<div style="text-align: left; padding: 3rem; margin: auto; ">
+								<p>The AuditManager class is responsible for logging all security
+									related events that occur in our application.<br>
+							<code style="text-align: left;">
+								public void auditEventHappened(AuditApplicationEvent auditApplicationEvent) { }
+							</code>
+								</p>
+
+
+						</div>
+							<div class="content" >
+
+							</div>
+					</div>
+				</div>
+			</section>
+
+		<!-- Scripts -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.min.js"></script>
+		<script src="/js/breakpoints.min.js"></script>
+ 		<script src="/js/util.js"></script>
+		<script src="/js/main.js"></script>
+	</body>
+</html>

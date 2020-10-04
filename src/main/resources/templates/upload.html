@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>My Web Application</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="icon" type="image/x-icon" href="/images/icons/sec.png" />
+	<link rel="stylesheet" href="/css/index.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+</head>
+
+	<body class="is-preload">
+
+		<!-- Header -->
+		<header id="header">
+			<a class="logo" href="/">Home</a>
+			<nav>
+				<a class="logo" href="#menu">Menu</a>
+			</nav>
+		</header>
+
+		<!-- Nav -->
+		<nav id="menu">
+			<ul class="links">
+				<li><a href="/login">Login</a></li>
+				<li><a href="/register">Register</a></li>
+			</ul>
+		</nav>
+
+		<!-- Banner -->
+		<section id="banner">
+			<div class="inner">
+				<h1>Unrestricted File Upload</h1>
+			</div>
+		</section>
+
+		<!-- Sections -->
+		<section class="wrapper">
+			<div class="inner">
+				<header class="special">
+				</header>
+				<div class="highlights">
+					<section>
+						<div class="content">
+							<header>
+								<h3>SECURE UPLOAD</h3>
+							</header>
+							<form method="post" action="#" th:action="@{/upload-interface(post_id1)}" enctype="multipart/form-data">
+								<div class="my_custom1">
+									<div class="col-6">
+										<label for="file">ACCEPTS ONLY IMAGES, PDF AND WORD DOCUMENTS</label>
+										<input type="file" name="file" id="file" />
+									</div>
+									<br>
+									<div class="col-6 col-12-medium">
+										<ul class="actions fit">
+											<li><button class="button primary fit" type="submit"
+														style="font-size: 15px;">UPLOAD</button></li>
+										</ul>
+									</div>
+									<br>
+								</div>
+							</form>
+						</div>
+					</section>
+					<section>
+						<div class="content" >
+							<div th:if="${output}" th:utext="${output}" style="color: #ce1b28;text-align: left; overflow-wrap: break-word;"> </div>
+							<ul>
+								<li th:each="file : ${files}">
+									<a th:href="${file.uri}" th:text="${file.file}"></a>
+								</li>
+							</ul>
+						</div>
+					</section>
+					<section>
+						<div class="content">
+							<header>
+								<h3>VULNERABLE UPLOAD</h3>
+								<h4>NO CONSTRAINTS<br></h4>
+							</header>
+							<form method="post" action="#" th:action="@{/upload-interface(post_id2)}" enctype="multipart/form-data">
+								<div class="my_custom1">
+									<div class="col-6">
+										<label for="file">File to Upload</label>
+										<input type="file" name="file" id="file2" />
+									</div>
+									<br>
+									<div class="col-6 col-12-medium">
+										<ul class="actions fit">
+											<li><button class="button primary fit" type="submit"
+														style="font-size: 15px;">UPLOAD</button></li>
+										</ul>
+									</div>
+									<br>
+								</div>
+							</form>
+						</div>
+					</section>
+					<section>
+						<div class="content" >
+							<h3>Protection:</h3>
+							We added a chain of filters based on the file`s attributes before it can be uploaded.
+							Firstly we check the file name which should be under 255 characters and set a maximum
+							size that is acceptable (can be changed based on server`s requirements). Then we check
+							its extension and the request content-type to determine the type of the file. However this
+							filter can be easily bypassed thus we provided additional implementations that
+							check the actual contents of the file, if they represent the displayed extension.
+							Available implementations are for Image files, Word, Excel, Powerpoint Documents and
+							PDF files. See more information in FileSystemStorageService.
+							<p></p>
+						</div>
+					</section>
+					<section>
+						<div class="content" style="background: unset;">
+						</div>
+					</section>
+					<section>
+						<div class="content">
+							<h3>Vulnerability:</h3>
+							<p>Allowing files to be uploaded without any restrictions is a huge vulnerability
+								risk. In this case scenario, the attacker is not able to execute any file
+								by just accessing it through the browser. However he is still able to upload
+								a malicious file that can be executed by an unaware developer on server side. Also
+								since the files are publicly accessible any user can also download the malware
+								and execute it by mistake on their computer. Finally by not restricting file
+								size and name length an attacker can cause a DDoS attack.</p>
+						</div>
+					</section>
+
+				</div>
+			</div>
+		</section>
+		
+
+		<!-- Scripts -->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.min.js"></script>
+			<script src="/js/breakpoints.min.js"></script>
+			<script src="/js/util.js"></script>
+			<script src="/js/main.js"></script>
+
+	</body>
+</html>

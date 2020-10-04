@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>My Web Application</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="icon" type="image/x-icon" href="/images/icons/sec.png" />
+	<link rel="stylesheet" href="/css/index.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+</head>
+
+<body class="is-preload">
+
+	<!-- Header -->
+	<header id="header">
+		<a class="logo" href="/">Home</a>
+		<nav>
+			<a class="logo" href="#menu">Welcome Admin [[${#httpServletRequest.remoteUser}]]</a>
+				</nav>
+			</header>
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li>
+						<form method="post" action="/logout" th:action="@{/logout}">
+							<button id="logout" type="submit"><a>Logout</a></button>
+						</form>
+					</li>
+				</ul>
+			</nav>
+		<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<h1>THIS PAGE IS ONLY ACCESSIBLE BY THE USER ROLE ADMIN</h1>
+				</div>
+			</section>
+
+	<section class="wrapper">
+		<div class="inner">
+			<div class="highlights">
+				<section>
+					<div class="content ">
+						<header>
+							<h3>Switch to another user:</h3>
+						</header>
+						<br>
+						<form id="switch_form" method="post" th:action="@{/impersonate}"  th:object="${switch}">
+							<div class=" my_custom2">
+								<div class="">
+									<label for="username">Enter Username</label>
+									<input type="text" th:field="${switch.username}" id="username"/>
+								</div>
+								<br>
+								<h4>
+									<a th:if="${errorMessage}" th:text="${errorMessage}" style="color: #ce1b28;"></a>
+								</h4>
+								<br>
+								<div class="">
+									<ul class="actions fit">
+										<li><button id="switch_button" class="button primary fit" type="submit" style="font-size: 15px;">SWITCH USER</button></li>
+									</ul>
+								</div>
+								<br>
+							</div>
+						</form>
+					</div>
+				</section>
+				<section>
+					<div class="content" style="background: unset;">
+					</div>
+				</section>
+				<section>
+					<div class="content ">
+						<header>
+							<h3>Get current users:</h3>
+							<br>
+							<h5>Saved in log folder</h5>
+						</header>
+						<br>
+						<form method="post" action="#" th:action="@{/39xyut79044cywrp0vy3(status)}" >
+							<div class=" my_custom2">
+								<br>
+								<br>
+								<div class="">
+									<ul class="actions fit">
+										<li>
+											<button class="button primary fit" type="submit" style="font-size: 15px;">GET USERS</button>
+										</li>
+									</ul>
+								</div>
+								<br>
+							</div>
+						</form>
+					</div>
+				</section>
+				<section>
+					<div class="content" style="background: unset;">
+					</div>
+				</section>
+				<section>
+					<div class="content" style="background: unset;">
+					</div>
+				</section>
+				<section>
+					<div class="content" style="background: unset;">
+					</div>
+				</section>
+			</div>
+		</div>
+	</section>
+
+		<!-- Scripts -->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<script src="/js/breakpoints.min.js"></script>
+			<script src="/js/util.js"></script>
+			<script src="/js/main.js"></script>
+	</body>
+</html>

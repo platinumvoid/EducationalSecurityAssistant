@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>My Web Application</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="icon" type="image/x-icon" href="/images/icons/sec.png" />
+	<link rel="stylesheet" href="/css/index.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+</head>
+
+	<body class="is-preload">
+
+
+		<!-- Header -->
+		<header id="header">
+			<a class="logo" href="#">Home</a>
+			<nav>
+				<a class="logo" href="#menu">Welcome [[${#httpServletRequest.remoteUser}]]</a>
+			</nav>
+		</header>
+
+		<!-- Nav -->
+		<nav id="menu">
+			<ul class="links">
+				<li>
+					<form method="post" action="/logout" th:action="@{/logout}">
+						<button id="logout" type="submit"><a>Logout</a></button>
+					</form>
+				</li>
+			</ul>
+		</nav>
+
+
+
+		<!-- Banner -->
+		<section id="banner">
+			<div class="inner">
+				<h1>THIS PAGE IS FOR ALL AUTHENTICATED USERS</h1>
+			</div>
+		</section>
+
+		<!-- Sections -->
+		<section class="wrapper">
+			<div class="inner">
+				<header class="special">
+				</header>
+				<div class="highlights">
+					<section>
+						<div class="content">
+							<header>
+								<h3>This POST request is authorized only by PRIVILEGED_USER</h3>
+							</header>
+							<form method="post" action="#" th:action="@{/userUI(post_id1)}" th:object="${person}">
+								<div class="my_custom1">
+									<div class="col-6">
+										<label for="post1id">Enter an Int</label>
+										<input type="text" th:field="${person.id}" id="post1id" />
+									</div>
+									<br>
+									<div class="col-6 col-12-medium my_custom2">
+										<label for="post1name">Enter a String</label>
+										<input type="text" th:field="${person.name}" id="post1name"/>
+									</div>
+									<br>
+									<h4>
+										<a th:if="${errorMessage}" th:text="${errorMessage}" style="color: #ce1b28;"></a>
+									</h4>
+									<br>
+									<div class="col-6 col-12-medium">
+										<ul class="actions fit">
+											<li><button class="button primary fit" type="submit"
+														style="font-size: 15px;">POST</button></li>
+										</ul>
+									</div>
+									<br>
+								</div>
+							</form>
+						</div>
+					</section>
+					<section>
+						<div class="content" >
+							<div th:if="${output}" th:text="${output}" style="color: #ce1b28;"></div>
+							<!--"${#strings.replace( #strings.escapeXml(output),'#','&lt;br&gt;')}"-->
+						</div>
+					</section>
+					<section>
+						<div class="content">
+							<header>
+								<h3>This POST request is authorized only by "delete" permission</h3>
+							</header>
+							<form method="post" action="#" th:action="@{/userUI(post_id2)}" th:object="${person2}">
+								<div class="my_custom1">
+									<div class="col-6">
+										<label for="post2id">Enter an Int</label>
+										<input type="text" th:field="${person2.id}" id="post2id"/>
+									</div>
+									<br>
+									<div class="col-6 col-12-medium my_custom2">
+										<label for="post2name">Enter a String</label>
+										<input type="text" th:field="${person2.name}" id="post2name"/>
+									</div>
+									<br>
+									<h4>
+										<a th:if="${errorMessage}" th:text="${errorMessage}" style="color: #ce1b28;"></a>
+									</h4>
+									<br>
+									<div class="col-6 col-12-medium">
+										<ul class="actions fit">
+											<li><button class="button primary fit" type="submit"
+														style="font-size: 15px;">POST</button></li>
+										</ul>
+									</div>
+									<br>
+								</div>
+							</form>
+						</div>
+					</section>
+					<section>
+						<div class="content" style="background: unset;">
+						</div>
+					</section>
+					<section>
+						<div class="content">
+							<header>
+								<h3>Privileged Interface Exposure </h3>
+								<p>Although the admin interface is forbidden to this User the rendered HTML is still accessible. In addition
+								it will not be detected by an Audit Event.</p>
+							</header>
+							<form method="post" action="#" th:action="@{/userUI(post_id3)}" >
+								<div class="my_custom1">
+									<div class="col-6 col-12-medium">
+										<ul class="actions fit">
+											<li><button class="button primary fit" type="submit"  style="font-size: 15px;">POST</button></li>
+										</ul>
+									</div>
+									<br>
+								</div>
+							</form>
+						</div>
+					</section>
+					<section>
+						<div class="content" style="background: unset;">
+						</div>
+					</section>
+				</div>
+			</div>
+		</section>
+
+		<!-- Scripts -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.min.js"></script>
+		<script src="/js/breakpoints.min.js"></script>
+		<script src="/js/util.js"></script>
+		<script src="/js/main.js"></script>
+	</body>
+</html>

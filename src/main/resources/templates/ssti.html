@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>My Web Application</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="icon" type="image/x-icon" href="/images/icons/sec.png" />
+	<link rel="stylesheet" href="/css/index.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+</head>
+
+	<body class="is-preload">
+
+		<!-- Header -->
+		<header id="header">
+			<a class="logo" href="/">Home</a>
+			<nav>
+				<a class="logo" href="#menu">Menu</a>
+			</nav>
+		</header>
+
+		<!-- Nav -->
+		<nav id="menu">
+			<ul class="links">
+				<li><a href="/login">Login</a></li>
+				<li><a href="/register">Register</a></li>
+			</ul>
+		</nav>
+
+		<!-- Banner -->
+		<section id="banner">
+			<div class="inner">
+				<h1>SERVER-SIDE TEMPLATE INJECTION (SSTI)</h1>
+			</div>
+		</section>
+
+		<!-- Sections -->
+		<section class="wrapper">
+			<div class="inner">
+				<header class="special">
+				</header>
+				<div class="highlights">
+					<section>
+						<div class="content">
+							<header>
+								<h3>Secured Input</h3>
+							</header>
+							<form method="post" action="#" th:action="@{/ssti-interface(post_id1)}" th:object="${secure}">
+								<div class="my_custom1">
+									<div class="col-6">
+										<label for="post1id">Try Inputs Commented Here</label>
+										<!--7*7-->
+										<!--${T(java.lang.Runtime).getRuntime().exec('touch testFile.txt')}-->
+										<input type="text" th:field="${secure.input}" id="post1id" />
+									</div>
+									<br>
+									<div class="col-6 col-12-medium">
+										<ul class="actions fit">
+											<li><button class="button primary fit" type="submit"
+														style="font-size: 15px;">POST</button></li>
+										</ul>
+									</div>
+									<br>
+								</div>
+							</form>
+						</div>
+					</section>
+					<section>
+						<div class="content" >
+							<h3>Output <br> </h3>
+							<h4>Static: <br> </h4>
+							<div th:if="${output}" th:utext="${output}" style="color: #ce1b28;"> </div>
+
+							<h4>Dynamic: <br> </h4>
+							<div style="color: #ce1b28;"><a>[[__${output}__]]</a></div>
+							<!--The dynamic output here is preprocessed by Thymeleaf before displaying it
+								on the HTML DOM page. The second payload can achieve arbitrary Remote Code
+								Execution. By executing, creates a file in the project`s home directory.
+								However it needs to be put inside ${} in order to pass the expression filter.-->
+
+						</div>
+					</section>
+					<section>
+						<div class="content">
+							<header>
+								<h3>Vulnerable Input</h3>
+							</header>
+							<form method="post" action="#" th:action="@{/ssti-interface(post_id2)}" th:object="${vulnerable}">
+								<div class="my_custom1">
+									<div class="col-6">
+										<label for="post2id">Try Inputs Commented Here</label>
+										<!--7*7-->
+										<!--${T(java.lang.Runtime).getRuntime().exec('touch testFile.txt')}-->
+										<input type="text" th:field="${vulnerable.input}" id="post2id" />
+									</div>
+									<br>
+									<div class="col-6 col-12-medium">
+										<ul class="actions fit">
+											<li><button class="button primary fit" type="submit"
+														style="font-size: 15px;">POST</button></li>
+										</ul>
+									</div>
+									<br>
+								</div>
+							</form>
+						</div>
+					</section>
+					<section>
+						<div class="content" >
+							<h3>Protection:</h3>
+							<p>
+								The best way to prevent server-side template injection is to not allow any users to
+								modify or submit new templates. Use dynamic fields only when necessary and avoid cases
+								where the output could be determined by the user. However, this is sometimes unavoidable
+								due to business requirements.
+								For this case scenario, processing of the equation can be handled using a form submission
+								instead. Equally, all computational logic must be handled in a sand-boxed environment.
+								If this approach is mandatory we suggest at least a regular expression filter
+								that prevents usage of the exec function which pose a huge risk since it allows
+								Remote Code Execution.</p>
+						</div>
+					</section>
+					<section>
+						<div class="content" style="background: unset;">
+						</div>
+					</section>
+					<section>
+						<div class="content">
+							<h3>Vulnerability:</h3>
+							<p> Although it can easily mistaken for  Cross-Site Scripting (XSS), Template Injection can
+								arise both through developer error, and through the intentional exposure of templates in an
+								attempt to offer rich functionality. An attacker can inject the Template to directly attack web servers'
+								internals and often obtain Remote Code Execution (RCE). See comments in this html for more
+								details. Consider the following scenarios:<br>
+								<ul>
+									<li>Set navigation menu options dynamically based on error messages or user input without
+										the need to create additional HTML pages</li>
+									<li>Dynamically set the current date</li>
+									<li>Display invalid URL error message
+										(Implemented for demonstration purposes Try It!!!See error.html for more details.)</li>
+								</ul>
+								<br>
+							</p>
+						</div>
+					</section>
+
+				</div>
+			</div>
+		</section>
+		
+
+		<!-- Scripts -->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.min.js"></script>
+			<script src="/js/breakpoints.min.js"></script>
+			<script src="/js/util.js"></script>
+			<script src="/js/main.js"></script>
+
+	</body>
+</html>
